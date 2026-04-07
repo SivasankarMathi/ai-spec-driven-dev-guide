@@ -1,0 +1,44 @@
+/* Syncfusion Theme Overrides - Primary color #2D5BFF */
+
+/* Button primary overrides */
+.e-btn.e-primary,
+.e-css.e-btn.e-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.e-btn.e-primary:hover,
+.e-css.e-btn.e-primary:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+
+/* TextBox focus overrides */
+.e-input-group:not(.e-disabled):not(.e-float-icon-left).e-input-focus::before,
+.e-input-group:not(.e-disabled):not(.e-float-icon-left).e-input-focus::after {
+  background: var(--color-primary);
+}
+
+.e-input-group.e-input-focus .e-input {
+  border-color: var(--color-primary);
+}
+
+/* Switch overrides */
+.e-switch-wrapper .e-switch-on {
+  background-color: var(--color-primary);
+}
+
+/* Tab overrides */
+.e-tab .e-tab-header .e-toolbar-item.e-active .e-tab-text {
+  color: var(--color-primary);
+}
+
+.e-tab .e-tab-header .e-indicator {
+  background-color: var(--color-primary);
+}
+
+/* DropDownList focus */
+.e-dropdownlist.e-input-group.e-input-focus::before,
+.e-dropdownlist.e-input-group.e-input-focus::after {
+  background: var(--color-primary);
+}

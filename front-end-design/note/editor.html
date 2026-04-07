@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SyncNotes - Note Editor</title>
+    <link rel="stylesheet" href="editor.css">
+</head>
+<body>
+    <div class="editor-layout">
+
+        <!-- ===== Editor Top Bar ===== -->
+        <!-- React: <EditorTopBar /> -->
+        <header class="editor-topbar">
+            <button class="editor-topbar__back" id="back-btn" aria-label="Go back">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"/>
+                </svg>
+            </button>
+
+            <div class="editor-topbar__actions">
+                <!-- Pin -->
+                <button class="editor-topbar__btn" id="pin-btn" aria-label="Pin note" data-tooltip="Pin">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 17V21"/>
+                        <path d="M15.54 8.46L19 5"/>
+                        <path d="M5 19L9.5 14.5"/>
+                        <path d="M7.5 7.5L16.5 16.5"/>
+                        <path d="M14.5 4L20 9.5L14.5 15L9 9.5Z"/>
+                    </svg>
+                </button>
+
+                <!-- AI / Smart Write -->
+                <button class="editor-topbar__btn" id="ai-btn" aria-label="AI assist" data-tooltip="AI Assist">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M12 2v4"/>
+                        <path d="M12 18v4"/>
+                        <path d="M4.93 4.93l2.83 2.83"/>
+                        <path d="M16.24 16.24l2.83 2.83"/>
+                        <path d="M2 12h4"/>
+                        <path d="M18 12h4"/>
+                        <path d="M4.93 19.07l2.83-2.83"/>
+                        <path d="M16.24 7.76l2.83-2.83"/>
+                    </svg>
+                </button>
+
+                <!-- Share / Copy -->
+                <button class="editor-topbar__btn" id="share-btn" aria-label="Share note" data-tooltip="Share">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                </button>
+
+                <!-- More Options -->
+                <button class="editor-topbar__btn" id="more-btn" aria-label="More options" data-tooltip="More">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <circle cx="12" cy="5" r="1.5"/>
+                        <circle cx="12" cy="12" r="1.5"/>
+                        <circle cx="12" cy="19" r="1.5"/>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- ===== Editor Body ===== -->
+        <main class="editor-body">
+
+            <!-- Meta Row: Smart Write toggle + Date -->
+            <!-- React: <EditorMeta /> -->
+            <div class="editor-meta">
+                <div class="editor-meta__left">
+                    <span class="editor-meta__label">Smart Write</span>
+                    <label class="toggle" for="smart-write-toggle">
+                        <input type="checkbox" id="smart-write-toggle" class="toggle__input" />
+                        <span class="toggle__slider"></span>
+                    </label>
+                </div>
+                <span class="editor-meta__date" id="note-date">08/07/25</span>
+            </div>
+
+            <!-- Tags Row -->
+            <!-- React: <TagList /> -->
+            <div class="tag-list" id="tag-list">
+                <span class="tag tag--yellow">Figma</span>
+                <span class="tag tag--yellow">UX/UI Design</span>
+                <button class="tag-add" id="add-tag-btn" aria-label="Add tag">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <line x1="12" y1="5" x2="12" y2="19"/>
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Title Input -->
+            <!-- React: <NoteTitle /> -->
+            <input
+                type="text"
+                class="editor-title"
+                id="note-title"
+                placeholder="Title"
+                value="What is Figma?"
+                aria-label="Note title"
+            />
+
+            <!-- Content Editor -->
+            <!-- React: <NoteContent /> (use rich text editor like TipTap, Slate, etc.) -->
+            <div
+                class="editor-content"
+                id="note-content"
+                contenteditable="true"
+                role="textbox"
+                aria-multiline="true"
+                aria-label="Note content"
+                data-placeholder="Start writing..."
+            ></div>
+
+        </main>
+
+    </div>
+
+    <script src="editor.js"></script>
+</body>
+</html>

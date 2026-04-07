@@ -1,0 +1,467 @@
+/* ===================================
+   Editor Layout
+   =================================== */
+.editorLayout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ===================================
+   Editor Top Bar
+   =================================== */
+.editorTopbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-white);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.editorTopbar__back {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: none;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast);
+}
+
+.editorTopbar__back:hover {
+  background: var(--color-background);
+}
+
+.editorTopbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.editorTopbar__btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.editorTopbar__btn:hover {
+  background: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+.editorTopbar__btnActive {
+  color: var(--color-primary);
+}
+
+/* Tooltip on hover (desktop) */
+.editorTopbar__btn[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-black);
+  color: var(--color-white);
+  font-size: var(--font-size-xs);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+  z-index: 30;
+}
+
+.editorTopbar__btn[data-tooltip]:hover::after {
+  opacity: 1;
+}
+
+/* ===================================
+   Editor Body
+   =================================== */
+.editorBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-xl) var(--spacing-lg);
+  max-width: 100%;
+}
+
+/* ===================================
+   Editor Meta (Smart Write + Date)
+   =================================== */
+.editorMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-md);
+}
+
+.editorMeta__left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.editorMeta__label {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+.editorMeta__enhancing {
+  font-size: var(--font-size-xs);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.editorMeta__date {
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+}
+
+/* ===================================
+   Toggle Switch
+   =================================== */
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.toggle__input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle__slider {
+  position: absolute;
+  inset: 0;
+  background: var(--color-toggle-bg);
+  border-radius: var(--radius-full);
+  transition: background var(--transition-base);
+}
+
+.toggle__slider::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 3px;
+  bottom: 3px;
+  background: var(--color-white);
+  border-radius: var(--radius-full);
+  transition: transform var(--transition-base);
+  box-shadow: var(--shadow-sm);
+}
+
+.toggle__inputChecked + .toggle__slider {
+  background: var(--color-toggle-active);
+}
+
+.toggle__inputChecked + .toggle__slider::before {
+  transform: translateX(18px);
+}
+
+/* ===================================
+   Tags
+   =================================== */
+.tagList {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xl);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  cursor: default;
+  transition: opacity var(--transition-fast);
+  gap: var(--spacing-xs);
+}
+
+.tag:hover {
+  opacity: 0.8;
+}
+
+.tagYellow {
+  background: var(--color-tag-yellow);
+  color: var(--color-tag-yellow-text);
+}
+
+.tagBlue {
+  background: var(--color-tag-blue);
+  color: var(--color-tag-blue-text);
+}
+
+.tagRemove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  font-size: 10px;
+  opacity: 0.7;
+  transition: opacity var(--transition-fast);
+}
+
+.tagRemove:hover {
+  opacity: 1;
+}
+
+.tagAdd {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  border: 1.5px dashed var(--color-border);
+  background: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.tagAdd:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+/* ===================================
+   Title Input
+   =================================== */
+.editorTitle {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family);
+  color: var(--color-text-primary);
+  background: transparent;
+  margin-bottom: var(--spacing-lg);
+}
+
+.editorTitle::placeholder {
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-regular);
+}
+
+/* ===================================
+   Content Editor (contenteditable)
+   =================================== */
+.editorContent {
+  flex: 1;
+  min-height: 300px;
+  font-size: var(--font-size-md);
+  line-height: 1.8;
+  color: var(--color-text-primary);
+  outline: none;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.editorContent:empty::before {
+  content: attr(data-placeholder);
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-regular);
+  pointer-events: none;
+}
+
+.editorContent:focus {
+  caret-color: var(--color-primary);
+}
+
+/* ===================================
+   Loading Spinner (AI Enhance button)
+   =================================== */
+.editorTopbar__btnLoading {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.editorTopbar__spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: var(--radius-full);
+  animation: editorSpin 0.7s linear infinite;
+}
+
+@keyframes editorSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ===================================
+   Enhance Review Bar
+   =================================== */
+.enhanceBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+  background: var(--color-primary-light);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-md);
+}
+
+.enhanceBar__label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-primary);
+}
+
+.enhanceBar__actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.enhanceBar__btnRevert,
+.enhanceBar__btnAccept {
+  padding: var(--spacing-xs) var(--spacing-lg);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+  transition: all var(--transition-fast);
+}
+
+.enhanceBar__btnRevert {
+  background: var(--color-white);
+  color: var(--color-text-secondary);
+}
+
+.enhanceBar__btnRevert:hover {
+  background: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+.enhanceBar__btnAccept {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+}
+
+.enhanceBar__btnAccept:hover {
+  background: var(--color-primary-hover, #2348E6);
+}
+
+/* ===================================
+   Responsive — Tablet (768px+)
+   =================================== */
+@media (min-width: 768px) {
+  .editorTopbar {
+    padding: var(--spacing-lg) var(--spacing-xl);
+  }
+
+  .editorBody {
+    padding: var(--spacing-xl) var(--spacing-2xl);
+  }
+
+  .editorTopbar__actions {
+    gap: var(--spacing-sm);
+  }
+
+  .editorTitle {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+/* ===================================
+   Responsive — Desktop (1024px+)
+   =================================== */
+@media (min-width: 1024px) {
+  .editorTopbar {
+    padding: var(--spacing-lg) var(--spacing-2xl);
+  }
+
+  .editorBody {
+    padding: var(--spacing-2xl) auto;
+    max-width: var(--editor-max-width);
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .editorTitle {
+    font-size: var(--font-size-2xl);
+  }
+
+  .editorContent {
+    font-size: var(--font-size-lg);
+    min-height: 500px;
+  }
+
+  .tag {
+    font-size: var(--font-size-small);
+    padding: var(--spacing-xs) var(--spacing-lg);
+  }
+
+  .editorMeta__label {
+    font-size: var(--font-size-sm);
+  }
+
+  .editorMeta__date {
+    font-size: var(--font-size-sm);
+  }
+
+  /* Show tooltips only on desktop */
+  .editorTopbar__btn[data-tooltip]::after {
+    display: block;
+  }
+}
+
+/* Hide tooltips on touch devices */
+@media (max-width: 1023px) {
+  .editorTopbar__btn[data-tooltip]::after {
+    display: none;
+  }
+}
+
+/* ===================================
+   Selection Style
+   =================================== */
+::selection {
+  background: var(--color-primary-light);
+  color: var(--color-text-primary);
+}

@@ -1,0 +1,729 @@
+/* ===================================
+   App Layout (Mobile First)
+   =================================== */
+.appLayout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ===================================
+   Sidebar (Hidden on Mobile)
+   =================================== */
+.sidebar {
+  display: none;
+}
+
+/* ===================================
+   Main Content
+   =================================== */
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: var(--bottom-nav-height);
+  position: relative;
+  max-width: 100%;
+}
+
+/* ===================================
+   Top Bar / Search
+   =================================== */
+.topBar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-sm);
+  position: sticky;
+  top: 0;
+  background: var(--color-background);
+  z-index: 20;
+}
+
+.topBar__greeting {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.searchBar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.searchBar__input {
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-lg);
+  padding-right: 44px;
+  font-size: var(--font-size-md);
+  font-family: var(--font-family);
+  color: var(--color-text-primary);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.searchBar__input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.searchBar__input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(45, 91, 255, 0.1);
+}
+
+.searchBar__icon {
+  position: absolute;
+  right: var(--spacing-lg);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+/* ===================================
+   Content Tabs (Notes / My Checklist)
+   =================================== */
+.contentTabs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-background);
+  position: sticky;
+  top: 56px;
+  z-index: 19;
+}
+
+.contentTabs__list {
+  display: flex;
+  gap: var(--spacing-xl);
+}
+
+.contentTabs__tab {
+  background: none;
+  border: none;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  font-family: var(--font-family);
+  color: var(--color-text-muted);
+  padding: var(--spacing-sm) 0;
+  cursor: pointer;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.contentTabs__tabActive {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.contentTabs__tabActive::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-primary);
+  border-radius: 2px 2px 0 0;
+}
+
+.contentTabs__tab:hover {
+  color: var(--color-primary);
+}
+
+.contentTabs__viewToggle {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+  display: flex;
+  align-items: center;
+}
+
+.contentTabs__viewToggle:hover {
+  background: var(--color-border);
+}
+
+/* ===================================
+   Content Panels
+   =================================== */
+.contentPanel {
+  display: none;
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-lg);
+}
+
+.contentPanelActive {
+  display: block;
+}
+
+/* ===================================
+   Note Sections (Pinned / Others)
+   =================================== */
+.noteSection {
+  margin-bottom: var(--spacing-xl);
+}
+
+.noteSection__title {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+/* ===================================
+   Note Grid
+   =================================== */
+.noteGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+}
+
+/* ===================================
+   Note Card
+   =================================== */
+.noteCard {
+  background: var(--color-card);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  position: relative;
+}
+
+.noteCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.noteCard:hover .noteCard__pin {
+  opacity: 1;
+}
+
+.noteCard:active {
+  transform: translateY(0);
+}
+
+/* Pin icon (visible on hover) */
+.noteCard__pin {
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  opacity: 0;
+  transition: opacity var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+  z-index: 2;
+  padding: 0;
+}
+
+.noteCard__pin:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+}
+
+/* Always show pin icon for pinned notes */
+.noteCard__pinActive {
+  opacity: 1;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.noteCard__title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: 1.3;
+}
+
+.noteCard__body {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.noteCard__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: var(--spacing-sm);
+}
+
+.noteCard__play {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.noteCard__play:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+}
+
+.noteCard__date {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* ===================================
+   FAB (Floating Action Button)
+   =================================== */
+.fabContainer {
+  position: fixed;
+  bottom: calc(var(--bottom-nav-height) + var(--spacing-xl));
+  right: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+  z-index: 50;
+}
+
+.fabBtn {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  border: none;
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-base);
+  position: relative;
+}
+
+.fabBtn:hover {
+  background: var(--color-primary-hover);
+  transform: scale(1.05);
+}
+
+.fabBtn__iconClose {
+  display: none;
+}
+
+.fabContainerOpen .fabBtn {
+  background: var(--color-primary);
+}
+
+.fabContainerOpen .fabBtn__iconPlus {
+  display: none;
+}
+
+.fabContainerOpen .fabBtn__iconClose {
+  display: block;
+}
+
+/* FAB Menu */
+.fabMenu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+  opacity: 0;
+  transform: translateY(20px) scale(0.8);
+  pointer-events: none;
+  transition: all var(--transition-base);
+}
+
+.fabContainerOpen .fabMenu {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.fabMenu__item {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-fast);
+}
+
+.fabMenu__item:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+  transform: scale(1.1);
+}
+
+.fabMenu__item:nth-child(1) { transition-delay: 0s; }
+.fabMenu__item:nth-child(2) { transition-delay: 50ms; }
+.fabMenu__item:nth-child(3) { transition-delay: 100ms; }
+
+/* FAB item wrapper with beta badge */
+.fabMenu__itemWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.betaBadge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 5px;
+  border-radius: 999px;
+  pointer-events: none;
+  white-space: nowrap;
+  line-height: 1.3;
+}
+
+/* FAB Overlay */
+.fabOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 49;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-base);
+}
+
+.fabOverlayVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ===================================
+   Mobile Bottom Nav
+   =================================== */
+.bottomNav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--bottom-nav-height);
+  background: var(--color-white);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 40;
+  padding: 0 var(--spacing-2xl);
+}
+
+.bottomNav__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-decoration: none;
+  color: var(--color-text-muted);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  transition: color var(--transition-fast);
+  min-width: 64px;
+}
+
+.bottomNav__itemActive {
+  color: var(--color-primary);
+}
+
+.bottomNav__item:hover {
+  color: var(--color-primary);
+}
+
+.bottomNav__icon {
+  flex-shrink: 0;
+}
+
+.bottomNav__label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+/* ===================================
+   Empty State
+   =================================== */
+.emptyState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2xl);
+  min-height: 200px;
+}
+
+.emptyState__text {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-md);
+}
+
+/* ===================================
+   Sidebar Styles (Desktop)
+   =================================== */
+.sidebar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--spacing-md);
+  margin-bottom: var(--spacing-2xl);
+  min-height: 32px;
+}
+
+.sidebar__brand {
+  overflow: hidden;
+}
+
+.sidebar__logo {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.sidebar__toggle {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.sidebar__toggle:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.sidebar__toggleIcon {
+  transition: transform var(--transition-base);
+}
+
+/* Collapsed state: rotate the chevron */
+.sidebarCollapsed .sidebar__toggleIcon {
+  transform: rotate(180deg);
+}
+
+.sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.sidebar__link:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.sidebar__linkActive {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.sidebar__icon {
+  flex-shrink: 0;
+}
+
+.sidebar__label {
+  opacity: 1;
+  transition: opacity var(--transition-fast);
+}
+
+/* Collapsed sidebar: hide labels */
+.sidebarCollapsed .sidebar__label {
+  opacity: 0;
+  width: 0;
+  pointer-events: none;
+}
+
+.sidebarCollapsed .sidebar__brand {
+  width: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sidebarCollapsed .sidebar__header {
+  justify-content: center;
+}
+
+.sidebarCollapsed .sidebar__link {
+  justify-content: center;
+  padding: var(--spacing-md);
+}
+
+/* ===================================
+   Scrollbar Styling
+   =================================== */
+.contentPanel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.contentPanel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.contentPanel::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+}
+
+.contentPanel::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* ===================================
+   Responsive - Tablet (768px+)
+   =================================== */
+@media (min-width: 768px) {
+  .noteGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+  }
+}
+
+/* ===================================
+   Responsive - Desktop (1024px+)
+   =================================== */
+@media (min-width: 1024px) {
+  /* Show Sidebar, Hide Bottom Nav */
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    width: var(--sidebar-width);
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: var(--color-white);
+    border-right: 1px solid var(--color-border);
+    padding: var(--spacing-xl) var(--spacing-lg);
+    z-index: 30;
+    transition: width var(--transition-base);
+    overflow: hidden;
+  }
+
+  .sidebarCollapsed {
+    width: var(--sidebar-collapsed-width);
+  }
+
+  .bottomNav {
+    display: none;
+  }
+
+  .appLayout {
+    flex-direction: row;
+  }
+
+  .mainContent {
+    margin-left: var(--sidebar-width);
+    padding-bottom: 0;
+    max-width: calc(100vw - var(--sidebar-width));
+    transition: margin-left var(--transition-base), max-width var(--transition-base);
+  }
+
+  .mainContentCollapsed {
+    margin-left: var(--sidebar-collapsed-width);
+    max-width: calc(100vw - var(--sidebar-collapsed-width));
+  }
+
+  .fabContainer {
+    bottom: var(--spacing-xl);
+  }
+
+  /* Grid gets more columns on large screens */
+  .noteGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+  }
+
+  .topBar {
+    padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-md);
+  }
+
+  .searchBar {
+    max-width: 480px;
+  }
+
+  .contentTabs {
+    padding: var(--spacing-sm) var(--spacing-xl);
+    top: 64px;
+  }
+
+  .contentPanel {
+    padding: var(--spacing-xl);
+  }
+}
+
+@media (min-width: 1440px) {
+  .noteGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

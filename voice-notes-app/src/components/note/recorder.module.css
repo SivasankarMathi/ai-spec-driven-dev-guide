@@ -1,0 +1,364 @@
+/* ===================================
+   Overlay Backdrop
+   =================================== */
+.recorderOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 99;
+  opacity: 1;
+  transition: opacity var(--transition-base);
+}
+
+.recorderOverlayHidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ===================================
+   Recorder Modal (Mobile First)
+   =================================== */
+.recorderModal {
+  position: fixed;
+  z-index: 100;
+  background: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.3s ease-out;
+
+  /* Mobile: bottom sheet style */
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-2xl);
+  max-height: 85vh;
+  box-shadow: var(--shadow-xl);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===================================
+   Modal Header
+   =================================== */
+.recorderModal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-xl);
+}
+
+.recorderModal__tabs {
+  display: flex;
+  gap: var(--spacing-xl);
+}
+
+.recorderModal__tab {
+  background: none;
+  border: none;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family);
+  color: var(--color-primary);
+  cursor: pointer;
+  padding: var(--spacing-sm) 0;
+  position: relative;
+}
+
+.recorderModal__tabActive::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-primary);
+  border-radius: 2px;
+}
+
+.recorderModal__close {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.recorderModal__close:hover {
+  background: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+/* ===================================
+   Waveform
+   =================================== */
+.recorderModal__waveform {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2xl) 0;
+}
+
+.waveform {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  height: 80px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.waveform__bar {
+  width: 3px;
+  height: var(--h, 50%);
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+  animation: waveAnim 1.2s ease-in-out infinite;
+  min-height: 6px;
+}
+
+.waveform__bar:nth-child(odd) { animation-delay: 0s; }
+.waveform__bar:nth-child(even) { animation-delay: 0.3s; }
+.waveform__bar:nth-child(3n) { animation-delay: 0.6s; }
+.waveform__bar:nth-child(5n) { animation-delay: 0.15s; }
+.waveform__bar:nth-child(7n) { animation-delay: 0.45s; }
+
+@keyframes waveAnim {
+  0%, 100% { transform: scaleY(0.5); opacity: 0.6; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+
+/* Paused state */
+.waveformPaused .waveform__bar {
+  animation-play-state: paused;
+  opacity: 0.4;
+}
+
+/* ===================================
+   Status & Timer
+   =================================== */
+.recorderModal__status {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.recorderModal__statusText {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.recorderModal__timer {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 1px;
+}
+
+/* ===================================
+   Transcript Preview
+   =================================== */
+.recorderModal__transcript {
+  max-height: 120px;
+  overflow-y: auto;
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  background: var(--color-background);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* ===================================
+   Stop Button
+   =================================== */
+.recorderModal__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.stopBtn {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full);
+  border: 3px solid var(--color-red);
+  background: var(--color-white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.stopBtn:hover {
+  background: var(--color-red-light);
+  transform: scale(1.05);
+}
+
+.stopBtn:active {
+  transform: scale(0.97);
+}
+
+.stopBtn__inner {
+  width: 24px;
+  height: 24px;
+  background: var(--color-red);
+  border-radius: var(--radius-sm);
+  transition: border-radius var(--transition-fast);
+}
+
+/* Recording state: inner is a circle */
+.stopBtnRecording .stopBtn__inner {
+  border-radius: var(--radius-full);
+  animation: pulseDot 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+/* ===================================
+   Action Buttons (Retake / Create Note)
+   =================================== */
+.recorderModal__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2xl);
+}
+
+.btnRetake {
+  background: none;
+  border: none;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  font-family: var(--font-family);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.btnRetake:hover {
+  background: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+.btnCreateNote {
+  background: var(--color-white);
+  border: 1.5px solid var(--color-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family);
+  color: var(--color-primary);
+  padding: var(--spacing-sm) var(--spacing-xl);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btnCreateNote:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btnCreateNote:active {
+  transform: scale(0.97);
+}
+
+/* ===================================
+   Responsive — Tablet (768px+)
+   =================================== */
+@media (min-width: 768px) {
+  .recorderModal {
+    bottom: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: var(--radius-xl);
+    width: 460px;
+    max-height: 80vh;
+    animation: fadeInScale 0.3s ease-out;
+  }
+
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+  .waveform {
+    max-width: 360px;
+    height: 100px;
+  }
+}
+
+/* ===================================
+   Responsive — Desktop (1024px+)
+   =================================== */
+@media (min-width: 1024px) {
+  .recorderModal {
+    width: 520px;
+    padding: var(--spacing-2xl) var(--spacing-2xl) var(--spacing-2xl);
+  }
+
+  .waveform {
+    max-width: 400px;
+    height: 100px;
+  }
+
+  .waveform__bar {
+    width: 4px;
+  }
+
+  .recorderModal__timer {
+    font-size: var(--font-size-2xl);
+  }
+
+  .stopBtn {
+    width: 72px;
+    height: 72px;
+  }
+
+  .stopBtn__inner {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* ===================================
+   Accessibility
+   =================================== */
+button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
