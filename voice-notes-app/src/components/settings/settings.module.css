@@ -1,0 +1,699 @@
+/* ===================================
+   App Layout
+   =================================== */
+.appLayout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ===================================
+   Sidebar (Desktop)
+   =================================== */
+.sidebar {
+  display: none;
+  flex-direction: column;
+  width: var(--sidebar-width);
+  background: var(--color-white);
+  border-right: 1px solid var(--color-border);
+  padding: var(--spacing-xl) var(--spacing-md);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 50;
+  transition: width var(--transition-smooth);
+}
+
+.sidebar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-2xl);
+  padding: 0 var(--spacing-xs);
+}
+
+.sidebar__brand {
+  overflow: hidden;
+}
+
+.sidebar__logo {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.sidebar__toggle {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.sidebar__toggle:hover {
+  background: var(--color-background);
+}
+
+.sidebar__toggleIcon {
+  transition: transform var(--transition-base);
+}
+
+.sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-md);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.sidebar__link:hover {
+  background: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+.sidebar__linkActive {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.sidebar__icon {
+  flex-shrink: 0;
+}
+
+.sidebar__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Collapsed Sidebar */
+.sidebarCollapsed {
+  width: var(--sidebar-collapsed-width);
+}
+
+.sidebarCollapsed .sidebar__logo,
+.sidebarCollapsed .sidebar__label {
+  display: none;
+}
+
+.sidebarCollapsed .sidebar__toggleIcon {
+  transform: rotate(180deg);
+}
+
+.sidebarCollapsed .sidebar__link {
+  justify-content: center;
+  padding: var(--spacing-md);
+}
+
+/* ===================================
+   Main Content
+   =================================== */
+.mainContent {
+  flex: 1;
+  min-height: 100vh;
+  padding-bottom: calc(var(--bottom-nav-height) + var(--spacing-xl));
+  background: var(--color-white);
+}
+
+/* ===================================
+   View System (Settings / Profile / Appearance)
+   =================================== */
+.settingsView {
+  display: none;
+  padding: var(--spacing-xl) var(--spacing-lg);
+}
+
+.settingsViewActive {
+  display: block;
+}
+
+/* ===================================
+   View Header
+   =================================== */
+.viewHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.viewHeader__title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.viewHeader__back {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: none;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast);
+}
+
+.viewHeader__back:hover {
+  background: var(--color-background);
+}
+
+/* ===================================
+   User Card (Settings Main)
+   =================================== */
+.userCard {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl) 0;
+  margin-bottom: var(--spacing-xl);
+}
+
+.userCard__avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-avatar-bg);
+  color: var(--color-avatar-text);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+.userCard__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.userCard__name {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.userCard__email {
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+/* ===================================
+   Settings Menu List
+   =================================== */
+.settingsMenu {
+  list-style: none;
+  margin-bottom: var(--spacing-3xl);
+}
+
+.settingsMenu__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-xl) 0;
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.settingsMenu__item:first-child {
+  border-top: 1px solid var(--color-border);
+}
+
+.settingsMenu__item:hover {
+  background: var(--color-background);
+  padding-left: var(--spacing-sm);
+  padding-right: var(--spacing-sm);
+  margin-left: calc(-1 * var(--spacing-sm));
+  margin-right: calc(-1 * var(--spacing-sm));
+  border-radius: var(--radius-md);
+}
+
+.settingsMenu__label {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  display: block;
+}
+
+.settingsMenu__desc {
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+  display: block;
+  margin-top: 2px;
+}
+
+.settingsMenu__arrow {
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+/* ===================================
+   Log Out Button
+   =================================== */
+.logoutBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  width: 200px;
+  margin: 0 auto;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  color: var(--color-danger);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  font-family: var(--font-family);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.logoutBtn:hover {
+  background: var(--color-danger-light);
+  border-color: var(--color-danger);
+}
+
+.logoutBtn__icon {
+  flex-shrink: 0;
+}
+
+/* ===================================
+   Profile View — Rows
+   =================================== */
+.profileRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-xl) 0;
+}
+
+.profileRowClickable {
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  border-radius: var(--radius-md);
+}
+
+.profileRowClickable:hover {
+  background: var(--color-background);
+  padding-left: var(--spacing-sm);
+  padding-right: var(--spacing-sm);
+  margin-left: calc(-1 * var(--spacing-sm));
+  margin-right: calc(-1 * var(--spacing-sm));
+}
+
+.profileRow__label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+.profileRow__arrow {
+  color: var(--color-text-muted);
+}
+
+.divider {
+  height: 1px;
+  background: var(--color-border);
+}
+
+/* Profile Avatar (initials circle) */
+.profileAvatar {
+  position: relative;
+}
+
+.profileAvatar__circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background: var(--color-avatar-bg);
+  color: var(--color-avatar-text);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+.profileAvatar__edit {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.profileAvatar__edit:hover {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Username Input */
+.profileInput {
+  width: 120px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  text-align: center;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.profileInput:focus {
+  border-color: var(--color-primary);
+}
+
+/* ===================================
+   Appearance View — Rows
+   =================================== */
+.appearanceRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-xl) 0;
+}
+
+.appearanceRow__label {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+.appearanceSelect {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  padding-right: var(--spacing-2xl);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  background: var(--color-white);
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 14px;
+  transition: border-color var(--transition-fast);
+}
+
+.appearanceSelect:focus {
+  border-color: var(--color-primary);
+}
+
+/* ===================================
+   Modal Overlay — Change Password
+   =================================== */
+.modalOverlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.modalOverlayActive {
+  display: flex;
+}
+
+.modalSheet {
+  background: var(--color-white);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-2xl);
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp 300ms ease forwards;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.modalSheet__title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  color: var(--color-text-primary);
+}
+
+/* ===================================
+   Password Form
+   =================================== */
+.passwordForm__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-xl);
+  gap: var(--spacing-lg);
+}
+
+.passwordForm__label {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  min-width: 130px;
+}
+
+.passwordForm__static {
+  font-size: var(--font-size-small);
+  color: var(--color-text-primary);
+  text-align: right;
+}
+
+.passwordForm__input {
+  flex: 1;
+  max-width: 220px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  font-size: var(--font-size-small);
+  color: var(--color-text-primary);
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.passwordForm__input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.passwordForm__input:focus {
+  border-color: var(--color-primary);
+}
+
+.passwordForm__actions {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+}
+
+.passwordForm__btn {
+  flex: 1;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.passwordForm__btnCancel {
+  border: 1.5px solid var(--color-border);
+  background: var(--color-white);
+  color: var(--color-text-primary);
+}
+
+.passwordForm__btnCancel:hover {
+  background: var(--color-background);
+}
+
+.passwordForm__btnSubmit {
+  border: none;
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.passwordForm__btnSubmit:hover {
+  background: var(--color-primary-hover);
+}
+
+.passwordForm__error {
+  color: var(--color-danger);
+  font-size: var(--font-size-xs);
+  margin-top: var(--spacing-sm);
+  text-align: center;
+}
+
+/* ===================================
+   Bottom Nav (Mobile)
+   =================================== */
+.bottomNav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--bottom-nav-height);
+  background: var(--color-white);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 40;
+}
+
+.bottomNav__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-decoration: none;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  transition: color var(--transition-fast);
+  padding: var(--spacing-sm);
+}
+
+.bottomNav__item:hover {
+  color: var(--color-text-secondary);
+}
+
+.bottomNav__itemActive {
+  color: var(--color-primary);
+}
+
+.bottomNav__icon {
+  flex-shrink: 0;
+}
+
+/* ===================================
+   Responsive — Tablet (768px+)
+   =================================== */
+@media (min-width: 768px) {
+  .settingsView {
+    padding: var(--spacing-2xl) var(--spacing-2xl);
+  }
+
+  .viewHeader__title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .userCard__avatar {
+    width: 64px;
+    height: 64px;
+  }
+
+  .modalSheet {
+    border-radius: var(--radius-xl);
+    margin-bottom: auto;
+    margin-top: auto;
+    align-self: center;
+    animation: fadeScaleIn 250ms ease forwards;
+  }
+
+  @keyframes fadeScaleIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
+  }
+
+  .modalOverlayActive {
+    align-items: center;
+  }
+
+  .passwordForm__input {
+    max-width: 260px;
+  }
+}
+
+/* ===================================
+   Responsive — Desktop (1024px+)
+   =================================== */
+@media (min-width: 1024px) {
+  .sidebar {
+    display: flex;
+  }
+
+  .mainContent {
+    margin-left: var(--sidebar-width);
+    padding-bottom: var(--spacing-2xl);
+    transition: margin-left var(--transition-smooth);
+  }
+
+  .mainContentCollapsed {
+    margin-left: var(--sidebar-collapsed-width);
+  }
+
+  .bottomNav {
+    display: none;
+  }
+
+  .settingsView {
+    padding: var(--spacing-3xl) var(--spacing-3xl);
+  }
+
+  .userCard__avatar {
+    width: 72px;
+    height: 72px;
+  }
+
+  .profileAvatar__circle {
+    width: 56px;
+    height: 56px;
+    font-size: var(--font-size-xl);
+  }
+
+  .profileInput {
+    width: 150px;
+  }
+}

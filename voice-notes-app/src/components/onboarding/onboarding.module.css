@@ -1,0 +1,623 @@
+/* ===================================
+   Onboarding Container
+   =================================== */
+.onboardingContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  overflow: hidden;
+  background-color: var(--color-background);
+}
+
+/* ===================================
+   Onboarding Slides
+   =================================== */
+.onboardingSlide {
+  width: 100%;
+  max-width: 500px;
+  display: none;
+  animation: fadeIn 0.5s ease-out;
+  flex: 1;
+  min-height: 0;
+}
+
+.onboardingSlide--active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===================================
+   Slide 1: Splash Screen
+   =================================== */
+.splashScreen {
+  width: 100%;
+  flex: 1;
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+  border-radius: var(--radius-2xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-xl);
+}
+
+.splashScreen__title {
+  font-size: var(--font-size-splash);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  text-align: center;
+}
+
+/* ===================================
+   Feature Content (Slides 2-4)
+   =================================== */
+.featureContent {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-lg);
+}
+
+/* ===================================
+   Phone Mockup
+   =================================== */
+.phoneMockup {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-height: 0;
+}
+
+.phoneMockup__frame {
+  width: 260px;
+  height: min(520px, 100%);
+  background: var(--color-black);
+  border-radius: var(--radius-2xl);
+  padding: 12px;
+  box-shadow: var(--shadow-xl);
+  position: relative;
+  aspect-ratio: 1 / 2;
+  max-height: 100%;
+}
+
+.phoneMockup__notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 28px;
+  background: var(--color-black);
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  z-index: 10;
+}
+
+.phoneMockup__screen {
+  width: 100%;
+  height: 100%;
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  position: relative;
+}
+
+/* ===================================
+   Slide 2: Recording UI
+   =================================== */
+.recordingUi {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #F0F4FF 0%, #FFFFFF 40%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl) var(--spacing-lg);
+  position: relative;
+}
+
+.recordingUi__status {
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-lg);
+  font-weight: var(--font-weight-medium);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.recordingDot {
+  width: 8px;
+  height: 8px;
+  background: #EF4444;
+  border-radius: 50%;
+  animation: pulseDot 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.waveform {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  height: 60px;
+  margin-bottom: var(--spacing-lg);
+}
+
+.waveform__bar {
+  width: 3px;
+  height: var(--h, 50%);
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+  animation: waveAnimation 1.2s ease-in-out infinite;
+  min-height: 8px;
+}
+
+@keyframes waveAnimation {
+  0%, 100% { transform: scaleY(0.5); opacity: 0.7; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+
+.waveform--compact {
+  height: 40px;
+  margin-bottom: var(--spacing-2xl);
+}
+
+.recordingUi__timer {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-2xl);
+  font-weight: var(--font-weight-medium);
+  font-variant-numeric: tabular-nums;
+}
+
+.recordingControls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.recordingControls__btn {
+  background: var(--color-white);
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-primary);
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-md);
+}
+
+.recordingControls__btn--pause,
+.recordingControls__btn--play {
+  width: 48px;
+  height: 48px;
+}
+
+.recordingControls__btn--record {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #4A7FFF 0%, #2D5BFF 100%);
+  color: var(--color-white);
+  box-shadow: 0 4px 16px rgba(45, 91, 255, 0.4);
+}
+
+.recordingControls__btn--active {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 4px 16px rgba(45, 91, 255, 0.4); }
+  50% { box-shadow: 0 4px 24px rgba(45, 91, 255, 0.6); }
+}
+
+/* ===================================
+   Slide 3: Transcription UI
+   =================================== */
+.transcriptionUi {
+  width: 100%;
+  height: 100%;
+  background: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-xl) var(--spacing-lg);
+  padding-top: 50px;
+}
+
+.aiCard {
+  background: linear-gradient(135deg, #E8F0FF 0%, #F0F4FF 100%);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  position: relative;
+  max-width: 90%;
+}
+
+.aiCard__badge {
+  position: absolute;
+  top: -12px;
+  left: var(--spacing-lg);
+  background: linear-gradient(135deg, #4A7FFF 0%, #2D5BFF 100%);
+  color: var(--color-white);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-bold);
+  box-shadow: var(--shadow-md);
+}
+
+.aiCard__icon {
+  font-size: 12px;
+  font-weight: var(--font-weight-bold);
+  display: flex;
+  align-items: center;
+}
+
+.aiCard__sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+}
+
+.aiCard__text {
+  font-size: var(--font-size-small);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  margin-top: var(--spacing-sm);
+}
+
+/* ===================================
+   Slide 4: Template UI
+   =================================== */
+.templateUi {
+  width: 100%;
+  height: 100%;
+  background: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-lg);
+  padding-top: 40px;
+}
+
+.templateUi__header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.templateUi__back {
+  background: none;
+  border: none;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  display: flex;
+  align-items: center;
+}
+
+.templateUi__title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.templateList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xl);
+}
+
+.templateItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.templateItem:hover {
+  background: var(--color-gray-light);
+}
+
+.templateItem__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 20px;
+}
+
+.templateItem__icon--blue {
+  background: var(--color-primary);
+}
+
+.templateItem__icon--purple {
+  background: var(--color-purple);
+}
+
+.templateItem__icon--orange {
+  background: var(--color-orange);
+}
+
+.templateItem__content {
+  flex: 1;
+}
+
+.templateItem__title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: 2px;
+}
+
+.templateItem__subtitle {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+}
+
+.templateUi__footer {
+  margin-top: auto;
+  padding: var(--spacing-md);
+  background: var(--color-gray-light);
+  border-radius: var(--radius-md);
+  position: relative;
+}
+
+.templateUi__note {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+
+.templateUi__subnote {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+}
+
+.handPointer {
+  position: absolute;
+  bottom: 40px;
+  right: -10px;
+  animation: pointAnimation 1.5s ease-in-out infinite;
+}
+
+@keyframes pointAnimation {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.micButton {
+  position: absolute;
+  bottom: var(--spacing-lg);
+  right: var(--spacing-lg);
+  width: 56px;
+  height: 56px;
+  background: var(--color-primary);
+  border: none;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(45, 91, 255, 0.3);
+}
+
+/* ===================================
+   Feature Info
+   =================================== */
+.featureInfo {
+  text-align: center;
+  max-width: 400px;
+  flex-shrink: 0;
+}
+
+.featureInfo__title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.featureInfo__description {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* ===================================
+   Navigation Controls
+   =================================== */
+.navControls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+  flex-shrink: 0;
+}
+
+.navControls__btn {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-gray-light);
+  background: var(--color-white);
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+}
+
+.navControls__btn:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+  transform: scale(1.05);
+}
+
+/* ===================================
+   Pagination
+   =================================== */
+.pagination {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.pagination__dot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-gray-light);
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  padding: 0;
+}
+
+.pagination__dot--active {
+  width: 24px;
+  background: var(--color-primary);
+}
+
+.pagination__dot:hover {
+  background: var(--color-primary);
+  opacity: 0.7;
+}
+
+/* ===================================
+   Get Started Button
+   =================================== */
+.btnGetStarted {
+  margin-top: var(--spacing-md);
+  flex-shrink: 0;
+  padding: 14px var(--spacing-2xl);
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-fast);
+}
+
+.btnGetStarted:hover {
+  background: var(--color-primary-hover);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+/* ===================================
+   Animations
+   =================================== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.slideLeft {
+  animation: slideInFromLeft 0.5s ease-out;
+}
+
+.slideRight {
+  animation: slideInFromRight 0.5s ease-out;
+}
+
+@keyframes slideInFromRight {
+  from { opacity: 0; transform: translateX(100px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInFromLeft {
+  from { opacity: 0; transform: translateX(-100px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ===================================
+   Responsive Design
+   =================================== */
+@media (min-width: 768px) {
+  .splashScreen__title {
+    font-size: 64px;
+  }
+
+  .phoneMockup__frame {
+    width: 300px;
+    height: min(600px, 100%);
+  }
+
+  .featureInfo__title {
+    font-size: 28px;
+  }
+
+  .featureInfo__description {
+    font-size: var(--font-size-base);
+  }
+}
+
+@media (min-width: 1024px) {
+  .onboardingContainer {
+    padding: var(--spacing-2xl);
+    padding-bottom: var(--spacing-lg);
+  }
+
+  .featureContent {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-3xl);
+    max-width: 900px;
+  }
+
+  .phoneMockup {
+    flex: 0 1 auto;
+  }
+
+  .featureInfo {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 0 1 auto;
+  }
+
+  .featureInfo__description {
+    font-size: var(--font-size-lg);
+  }
+}

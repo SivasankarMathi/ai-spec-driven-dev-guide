@@ -1,0 +1,13 @@
+name: voice-notes  
+version: 1.0.0  
+description: APM project for voice-notes  
+author: Developer  
+dependencies:  
+  apm:  
+    - microsoft/apm-sample-package  
+    - anthropics/skills/skills/frontend-design  
+    - anthropics/skills/skills/pdf  
+    - parthasarathyy-m/skills-test/skill-creator  
+  mcp:  
+    -  io.github.netdata/mcp-server
+scripts: {}

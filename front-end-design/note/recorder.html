@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sync Notes - Recorder</title>
+    <link rel="stylesheet" href="recorder.css">
+</head>
+<body>
+    <!-- Overlay Backdrop -->
+    <div class="recorder-overlay" id="recorder-overlay"></div>
+
+    <!-- ===== Recorder Modal ===== -->
+    <!-- React: <RecorderModal /> -->
+    <div class="recorder-modal" id="recorder-modal">
+
+        <!-- Modal Header -->
+        <!-- React: <RecorderHeader /> -->
+        <div class="recorder-modal__header">
+            <div class="recorder-modal__tabs">
+                <button class="recorder-modal__tab recorder-modal__tab--active" data-mode="recorder">Recorder</button>
+            </div>
+            <button class="recorder-modal__close" id="recorder-close" aria-label="Close recorder">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Waveform Visualization -->
+        <!-- React: <Waveform /> -->
+        <div class="recorder-modal__waveform">
+            <div class="waveform" id="waveform">
+                <span class="waveform__bar" style="--h: 25%"></span>
+                <span class="waveform__bar" style="--h: 45%"></span>
+                <span class="waveform__bar" style="--h: 65%"></span>
+                <span class="waveform__bar" style="--h: 85%"></span>
+                <span class="waveform__bar" style="--h: 100%"></span>
+                <span class="waveform__bar" style="--h: 90%"></span>
+                <span class="waveform__bar" style="--h: 75%"></span>
+                <span class="waveform__bar" style="--h: 55%"></span>
+                <span class="waveform__bar" style="--h: 40%"></span>
+                <span class="waveform__bar" style="--h: 70%"></span>
+                <span class="waveform__bar" style="--h: 95%"></span>
+                <span class="waveform__bar" style="--h: 80%"></span>
+                <span class="waveform__bar" style="--h: 60%"></span>
+                <span class="waveform__bar" style="--h: 50%"></span>
+                <span class="waveform__bar" style="--h: 35%"></span>
+                <span class="waveform__bar" style="--h: 70%"></span>
+                <span class="waveform__bar" style="--h: 90%"></span>
+                <span class="waveform__bar" style="--h: 65%"></span>
+                <span class="waveform__bar" style="--h: 45%"></span>
+                <span class="waveform__bar" style="--h: 80%"></span>
+                <span class="waveform__bar" style="--h: 55%"></span>
+                <span class="waveform__bar" style="--h: 75%"></span>
+                <span class="waveform__bar" style="--h: 100%"></span>
+                <span class="waveform__bar" style="--h: 60%"></span>
+                <span class="waveform__bar" style="--h: 40%"></span>
+                <span class="waveform__bar" style="--h: 85%"></span>
+                <span class="waveform__bar" style="--h: 50%"></span>
+                <span class="waveform__bar" style="--h: 70%"></span>
+                <span class="waveform__bar" style="--h: 30%"></span>
+                <span class="waveform__bar" style="--h: 90%"></span>
+            </div>
+        </div>
+
+        <!-- Status & Timer -->
+        <!-- React: <RecorderStatus /> -->
+        <div class="recorder-modal__status">
+            <p class="recorder-modal__status-text" id="recorder-status">Listening...</p>
+            <p class="recorder-modal__timer" id="recorder-timer">00:05</p>
+        </div>
+
+        <!-- Stop Button -->
+        <!-- React: <StopButton /> -->
+        <div class="recorder-modal__controls">
+            <button class="stop-btn" id="stop-btn" aria-label="Stop recording">
+                <span class="stop-btn__inner"></span>
+            </button>
+        </div>
+
+        <!-- Action Buttons -->
+        <!-- React: <RecorderActions /> -->
+        <div class="recorder-modal__actions">
+            <button class="btn-retake" id="retake-btn">Retake</button>
+            <button class="btn-create-note" id="create-note-btn">Create Note</button>
+        </div>
+    </div>
+
+    <script src="recorder.js"></script>
+</body>
+</html>

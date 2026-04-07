@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Sync Notes - Onboarding</title>
+    <link rel="stylesheet" href="onboarding.css">
+</head>
+<body>
+    <div class="onboarding-container">
+        <!-- Slide 1: Welcome/Splash -->
+        <div class="onboarding-slide onboarding-slide--active" data-slide="1">
+            <div class="splash-screen">
+                <h1 class="splash-screen__title">Sync Notes</h1>
+            </div>
+        </div>
+
+        <!-- Slide 2: Voice Capture -->
+        <div class="onboarding-slide" data-slide="2">
+            <div class="feature-content">
+                <div class="phone-mockup">
+                    <div class="phone-mockup__frame">
+                        <div class="phone-mockup__notch"></div>
+                        <div class="phone-mockup__screen">
+                            <div class="recording-ui">
+                                <p class="recording-ui__status">Listening...</p>
+                                
+                                <!-- Waveform Visualization -->
+                                <div class="waveform">
+                                    <span class="waveform__bar" style="height: 20%"></span>
+                                    <span class="waveform__bar" style="height: 40%"></span>
+                                    <span class="waveform__bar" style="height: 60%"></span>
+                                    <span class="waveform__bar" style="height: 80%"></span>
+                                    <span class="waveform__bar" style="height: 100%"></span>
+                                    <span class="waveform__bar" style="height: 85%"></span>
+                                    <span class="waveform__bar" style="height: 70%"></span>
+                                    <span class="waveform__bar" style="height: 55%"></span>
+                                    <span class="waveform__bar" style="height: 90%"></span>
+                                    <span class="waveform__bar" style="height: 75%"></span>
+                                    <span class="waveform__bar" style="height: 60%"></span>
+                                    <span class="waveform__bar" style="height: 45%"></span>
+                                    <span class="waveform__bar" style="height: 65%"></span>
+                                    <span class="waveform__bar" style="height: 80%"></span>
+                                    <span class="waveform__bar" style="height: 95%"></span>
+                                    <span class="waveform__bar" style="height: 70%"></span>
+                                    <span class="waveform__bar" style="height: 50%"></span>
+                                    <span class="waveform__bar" style="height: 35%"></span>
+                                </div>
+
+                                <p class="recording-ui__timer">00:21</p>
+
+                                <!-- Recording Controls -->
+                                <div class="recording-controls">
+                                    <button className="recording-controls__btn recording-controls__btn--pause" class="recording-controls__btn recording-controls__btn--pause" aria-label="Pause recording">
+                                        <svg width="14" height="18" viewBox="0 0 14 18" fill="currentColor">
+                                            <rect width="4" height="18" rx="1"/>
+                                            <rect x="10" width="4" height="18" rx="1"/>
+                                        </svg>
+                                    </button>
+                                    
+                                    <button className="recording-controls__btn recording-controls__btn--record recording-controls__btn--active" class="recording-controls__btn recording-controls__btn--record recording-controls__btn--active" aria-label="Recording">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                            <circle cx="12" cy="12" r="8"/>
+                                        </svg>
+                                    </button>
+
+                                    <button className="recording-controls__btn recording-controls__btn--play" class="recording-controls__btn recording-controls__btn--play" aria-label="Play recording">
+                                        <svg width="14" height="18" viewBox="0 0 14 18" fill="currentColor">
+                                            <path d="M0 0L14 9L0 18V0Z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <button className="recording-ui__close" class="recording-ui__close" aria-label="Close">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                        <path d="M1 1L15 15M15 1L1 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-info">
+                    <h2 class="feature-info__title">Voice capture</h2>
+                    <p class="feature-info__description">"Records voice input, converts instantly into accurate text."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: AI Transcription -->
+        <div class="onboarding-slide" data-slide="3">
+            <div class="feature-content">
+                <div class="phone-mockup">
+                    <div class="phone-mockup__frame">
+                        <div class="phone-mockup__notch"></div>
+                        <div class="phone-mockup__screen">
+                            <div class="transcription-ui">
+                                <!-- Waveform at top -->
+                                <div class="waveform waveform--compact">
+                                    <span class="waveform__bar" style="height: 30%"></span>
+                                    <span class="waveform__bar" style="height: 50%"></span>
+                                    <span class="waveform__bar" style="height: 70%"></span>
+                                    <span class="waveform__bar" style="height: 90%"></span>
+                                    <span class="waveform__bar" style="height: 100%"></span>
+                                    <span class="waveform__bar" style="height: 85%"></span>
+                                    <span class="waveform__bar" style="height: 65%"></span>
+                                    <span class="waveform__bar" style="height: 45%"></span>
+                                    <span class="waveform__bar" style="height: 75%"></span>
+                                    <span class="waveform__bar" style="height: 95%"></span>
+                                    <span class="waveform__bar" style="height: 80%"></span>
+                                    <span class="waveform__bar" style="height: 60%"></span>
+                                    <span class="waveform__bar" style="height: 40%"></span>
+                                    <span class="waveform__bar" style="height: 55%"></span>
+                                    <span class="waveform__bar" style="height: 75%"></span>
+                                </div>
+
+                                <div class="ai-card">
+                                    <div class="ai-card__badge">
+                                        <span class="ai-card__icon">AI</span>
+                                        <svg class="ai-card__sparkle" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <path d="M8 0L9 7L16 8L9 9L8 16L7 9L0 8L7 7L8 0Z" fill="#FFB800"/>
+                                        </svg>
+                                    </div>
+                                    <p class="ai-card__text">This is an example of a real-time transcription in a speech-to-text conversion app.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-info">
+                    <h2 class="feature-info__title">AI Transcription</h2>
+                    <p class="feature-info__description">"AI Transcription: Instantly convert your voice into accurate, editable text."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Note Template -->
+        <div class="onboarding-slide" data-slide="4">
+            <div class="feature-content">
+                <div class="phone-mockup">
+                    <div class="phone-mockup__frame">
+                        <div class="phone-mockup__notch"></div>
+                        <div class="phone-mockup__screen">
+                            <div class="template-ui">
+                                <div class="template-ui__header">
+                                    <button className="template-ui__back" class="template-ui__back" aria-label="Go back">
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M12 4L6 10L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <h3 class="template-ui__title">Note Templates</h3>
+                                </div>
+
+                                <div class="template-list">
+                                    <div className="template-item" class="template-item">
+                                        <div class="template-item__icon template-item__icon--blue">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                                <rect x="3" y="3" width="18" height="18" rx="2" stroke="white" stroke-width="2" fill="none"/>
+                                                <line x1="8" y1="8" x2="16" y2="8" stroke="white" stroke-width="2"/>
+                                                <line x1="8" y1="12" x2="16" y2="12" stroke="white" stroke-width="2"/>
+                                                <line x1="8" y1="16" x2="13" y2="16" stroke="white" stroke-width="2"/>
+                                            </svg>
+                                        </div>
+                                        <div class="template-item__content">
+                                            <h4 class="template-item__title">Meeting Notes</h4>
+                                            <p class="template-item__subtitle">Notes for meetings</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="template-item" class="template-item">
+                                        <div class="template-item__icon template-item__icon--purple">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M12 2L15 8L22 9L17 14L18 21L12 18L6 21L7 14L2 9L9 8L12 2Z" fill="white"/>
+                                            </svg>
+                                        </div>
+                                        <div class="template-item__content">
+                                            <h4 class="template-item__title">Personal Journal</h4>
+                                            <p class="template-item__subtitle">Daily reflections</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="template-item" class="template-item">
+                                        <div class="template-item__icon template-item__icon--orange">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                                <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2" fill="none"/>
+                                                <path d="M8 12L11 15L16 9" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </div>
+                                        <div class="template-item__content">
+                                            <h4 class="template-item__title">Task List</h4>
+                                            <p class="template-item__subtitle">To-do items</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="template-ui__footer">
+                                    <p class="template-ui__note">Meeting Notes</p>
+                                    <p class="template-ui__subnote">The project is on schedule.</p>
+                                    
+                                    <!-- Hand pointing to mic button -->
+                                    <div class="hand-pointer">
+                                        <svg class="hand-pointer__hand" width="80" height="80" viewBox="0 0 80 80" fill="none">
+                                            <path d="M20 60C20 60 15 55 15 50C15 45 20 40 25 40C25 35 30 30 35 30C35 25 40 20 45 20C50 20 55 25 55 30V45C60 45 65 50 65 55C65 65 55 75 45 75C35 75 25 70 20 60Z" fill="#FDBEA3" stroke="#1A1A1A" stroke-width="1.5"/>
+                                        </svg>
+                                    </div>
+
+                                    <button className="mic-button" class="mic-button" aria-label="Record sync note">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                            <path d="M12 1C10.34 1 9 2.34 9 4V12C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12V4C15 2.34 13.66 1 12 1Z"/>
+                                            <path d="M19 10V12C19 15.87 15.87 19 12 19C8.13 19 5 15.87 5 12V10H7V12C7 14.76 9.24 17 12 17C14.76 17 17 14.76 17 12V10H19Z"/>
+                                            <path d="M11 21H13V23H11V21Z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-info">
+                    <h2 class="feature-info__title">Note Template</h2>
+                    <p class="feature-info__description">Organize your sync notes with customizable formats.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="nav-controls">
+            <button className="nav-controls__btn nav-controls__btn--prev" class="nav-controls__btn nav-controls__btn--prev" id="prev-btn" aria-label="Previous slide" style="display: none;">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 4L6 10L12 16"/>
+                </svg>
+            </button>
+
+            <!-- Pagination Dots -->
+            <div class="pagination">
+                <button className="pagination__dot pagination__dot--active" class="pagination__dot pagination__dot--active" data-slide="1" aria-label="Go to slide 1"></button>
+                <button className="pagination__dot" class="pagination__dot" data-slide="2" aria-label="Go to slide 2"></button>
+                <button className="pagination__dot" class="pagination__dot" data-slide="3" aria-label="Go to slide 3"></button>
+                <button className="pagination__dot" class="pagination__dot" data-slide="4" aria-label="Go to slide 4"></button>
+            </div>
+
+            <button className="nav-controls__btn nav-controls__btn--next" class="nav-controls__btn nav-controls__btn--next" id="next-btn" aria-label="Next slide">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 4L14 10L8 16"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Get Started Button (visible on last slide) -->
+        <button className="btn-get-started" class="btn-get-started" id="get-started-btn" style="display: none;">
+            Get Started
+        </button>
+    </div>
+
+    <script src="onboarding.js"></script>
+</body>
+</html>
