@@ -6,7 +6,7 @@ interface SearchBarProps {
   username?: string;
 }
 
-export default function SearchBar({ onSearch, username }: SearchBarProps) {
+export default function SearchBar({ onSearch }: SearchBarProps) {
   const [value, setValue] = useState('');
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const onSearchRef = useRef(onSearch);
