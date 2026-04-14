@@ -1,6 +1,6 @@
 ---
 name: git
-description: "Git workflow: conventional commits, rebase-based sync, PR templates (bug-fix/feature), security audits. Never commits secrets."
+description: "Use this skill when creating Pull request in agentic task"
 ---
 
 # Git Operations
