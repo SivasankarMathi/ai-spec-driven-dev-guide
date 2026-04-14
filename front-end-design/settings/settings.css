@@ -201,6 +201,18 @@ body {
     padding: var(--spacing-md);
 }
 
+/* Sidebar Footer */
+.sidebar__footer {
+    margin-top: auto;
+    padding: var(--spacing-base);
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar--collapsed .sidebar__footer {
+    padding: var(--spacing-md);
+}
+
 /* ===================================
    Main Content
    =================================== */
