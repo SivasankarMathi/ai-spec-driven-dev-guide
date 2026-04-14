@@ -1,6 +1,6 @@
 ---
 name: git
-description: "Use this skill when creating Pull request in agentic task"
+description: "When any task was considered as moved to completed state Use this skill to create Pull request and share it use"
 ---
 
 # Git Operations
