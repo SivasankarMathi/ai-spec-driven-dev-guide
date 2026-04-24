@@ -1,12 +1,111 @@
+# AI Spec-Driven Dev Guide
 
-# spec-driven-dev-guide
+A reference repository demonstrating a **spec-first (OpenSpec) development workflow**, paired with a fully functional **Voice Notes** web app built with React + TypeScript + Vite and Syncfusion UI components.
 
-A sample repository demonstrating a spec-first (OpenSpec) development workflow with a React + Vite reference app (Voice Notes) using Syncfusion Codestudio.
+---
 
-**Quick Start**
+## What This Project Is
 
-- **Requirements:** Node.js (LTS recommended) and `npm` or `pnpm` installed.
-- Run locally:
+This repo serves two purposes:
+
+1. **A methodology guide** — showing how to structure software projects using OpenSpec: writing feature specs before any code, driving implementation from BDD-style scenarios, and keeping design artifacts alongside code.
+2. **A working reference app** — `voice-notes-app/`, a browser-based voice note-taking application that demonstrates the spec-driven approach end-to-end.
+
+---
+
+## The Voice Notes App
+
+A local-first, browser-based note-taking app. No backend, no cloud — all data lives in the browser via SQLite (sql.js WASM) persisted to IndexedDB.
+
+**Core workflow:**
+```
+Record Voice → Transcribe (Web Speech API) → [Optional] AI Enhance → Save Note
+```
+
+### Key Features
+
+| Feature | Description |
+|---|---|
+| **Authentication** | Sign-up / sign-in forms with validation; OAuth buttons (UI placeholder) |
+| **Onboarding** | 4-slide carousel introducing the app; auto-advances and supports swipe/keyboard |
+| **Home Dashboard** | Note grid with pinned/others sections, real-time search (300ms debounce), FAB menu |
+| **Voice Recorder** | Modal with animated waveform, MM:SS timer, real-time transcription — audio is **never stored** |
+| **Note Editor** | Syncfusion RichTextEditor, auto-save (2s inactivity), Ctrl+S manual save, tags, pin toggle |
+| **Smart Write (AI)** | Sends note to OpenRouter GPT-4.1 for enhancement; accept or revert |
+| **Settings** | Theme (Light/Dark/System), font size, profile edit — all persisted to SQLite |
+
+### Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | React 19 + TypeScript |
+| Build Tool | Vite 8 |
+| UI Components | Syncfusion EJ2 React (v33) |
+| Routing | React Router DOM v7 |
+| Database | sql.js (SQLite WASM) → IndexedDB |
+| Voice | Web Speech API (browser-native) |
+| AI | OpenRouter API — GPT-4.1 |
+
+> **Browser support note:** Voice transcription works best in Chrome and Edge (Web Speech API coverage).
+
+---
+
+## Repository Structure
+
+```
+ai-spec-driven-dev-guide/
+├── front-end-design/          # Static HTML/CSS/JS UI prototypes (pixel-perfect design source)
+│   ├── auth/                  # Sign-in / sign-up screens
+│   ├── onboarding/            # Onboarding carousel
+│   ├── home/                  # Home dashboard
+│   ├── note/                  # Voice recorder modal + note editor
+│   └── settings/              # Settings screens
+│
+├── openspec/                  # Spec-driven workflow artifacts
+│   ├── config.yaml            # OpenSpec configuration
+│   ├── specs/                 # Feature specifications (BDD-style)
+│   │   ├── app-shell/         # React Router, theme, layout, DB context
+│   │   ├── auth-flow/         # Sign-up, sign-in, OAuth, sessions
+│   │   ├── home-dashboard/    # Note grid, search, sidebar, FAB
+│   │   ├── note-editor/       # Rich text editor, tags, auto-save, Smart Write
+│   │   ├── voice-recorder/    # Audio capture, waveform, transcription
+│   │   ├── settings-management/ # Appearance, profile, preferences
+│   │   ├── onboarding/        # Welcome slides and intro flow
+│   │   ├── data-persistence/  # SQLite schema, IndexedDB, migrations
+│   │   └── smart-write-ai/    # AI text refinement via external API
+│   └── changes/               # Change proposals and archived design decisions
+│
+├── voice-notes-app/           # React + TypeScript reference implementation
+│   ├── src/
+│   │   ├── components/        # Reusable UI components
+│   │   ├── pages/             # Route-level page components
+│   │   ├── contexts/          # React contexts (DB, auth, settings, etc.)
+│   │   ├── hooks/             # Custom React hooks
+│   │   ├── services/          # AI and external service integrations
+│   │   ├── db/                # SQLite schema and query helpers
+│   │   ├── types/             # TypeScript type definitions
+│   │   ├── styles/            # Global styles and design tokens
+│   │   ├── utils/             # Shared utility functions
+│   │   ├── App.tsx            # Root component and router setup
+│   │   └── main.tsx           # App entry point
+│   ├── .env.example           # Environment variable template
+│   ├── package.json
+│   ├── vite.config.ts
+│   └── tsconfig.json
+│
+├── REQUIREMENTS.md            # Full product requirements document
+└── README.md                  # This file
+```
+
+---
+
+## Quick Start
+
+### Prerequisites
+- Node.js (LTS recommended)
+- `npm` or `pnpm`
+
+### Run Locally
 
 ```bash
 cd voice-notes-app
@@ -14,43 +113,70 @@ npm install
 npm run dev
 ```
 
-**What this repo contains**
+App runs at `http://localhost:5173` by default.
 
-- **front-end-design/**: design examples and static HTML/CSS/JS mockups for screens.
-- **openspec/**: change proposals and archived design artifacts used by the spec-driven workflow.
-- **specs/**: feature specifications used to drive implementation (e.g., `note-editor`, `home-dashboard`).
-- **voice-notes-app/**: reference implementation (React + TypeScript + Vite).
-	- App entry: [voice-notes-app/src/main.tsx](voice-notes-app/src/main.tsx)
-	- Scripts & deps: [voice-notes-app/package.json](voice-notes-app/package.json)
+### Enable AI Features (optional)
 
-**Where to look first**
+Copy the example env file and add your OpenRouter API key:
 
-- Read the feature specs in `specs/` to understand intended behavior.
-- Open the reference app in `voice-notes-app/` and run it with `npm run dev` to explore the implemented UI and contexts.
+```bash
+cp voice-notes-app/.env.example voice-notes-app/.env
+# then edit .env and set VITE_OPENROUTER_API_KEY=your_key_here
+```
 
-**Understanding OpenSpec Specs**
+### Available Scripts
 
-The `openspec/specs/` directory contains feature-level specifications that drive implementation. Each spec file defines the requirements, acceptance criteria, and behaviors for a feature:
+| Command | Description |
+|---|---|
+| `npm run dev` | Start development server |
+| `npm run build` | Type-check + production build |
+| `npm run preview` | Preview the production build locally |
 
-- **app-shell/spec.md** — Core app infrastructure: React Router setup, Syncfusion theme integration, responsive layout, database context, and global CSS variables.
-- **auth-flow/spec.md** — User authentication: sign-up, sign-in, OAuth, and session management.
-- **home-dashboard/spec.md** — Home screen: note grid, search bar, sidebar, bottom navigation, and floating action button.
-- **note-editor/spec.md** — Rich text editor: title input, content editing, tags, pin/unpin, Smart Write toggle, and auto-save.
-- **voice-recorder/spec.md** — Voice recording: audio capture, waveform display, transcription, and note creation.
-- **settings-management/spec.md** — User settings: appearance, profile, and preferences.
-- **onboarding/spec.md** — First-time user flow: welcome slides and app introduction.
-- **data-persistence/spec.md** — Local storage: SQLite database (via sql.js) and data migration.
-- **smart-write-ai/spec.md** — AI-powered features: text refinement and content suggestions via external API.
+---
 
-**How specs work**
+## How the Spec-Driven Workflow Works
 
-Each spec uses a **BDD-style format** with:
-- **Requirements** — What the feature SHALL do.
-- **Scenarios** — Given/When/Then examples showing expected behavior.
+The `openspec/specs/` directory is the source of truth for feature behavior. Each subfolder contains a `spec.md` file written in **BDD format**:
 
-This ensures that implementation is measurable and testable against the spec.
+- **Requirements** — What the feature SHALL do (declarative, testable).
+- **Scenarios** — Given/When/Then examples showing exact expected behavior.
 
-**Useful files**
+**The workflow:**
+1. Write or update a spec in `openspec/specs/<feature>/spec.md`
+2. Review the static design in `front-end-design/<screen>/`
+3. Implement the feature in `voice-notes-app/src/` guided by the spec
+4. Archive change proposals in `openspec/changes/`
 
-- [openspec/specs/](openspec/specs/) — all feature specifications organized by feature.
-- [front-end-design/](front-end-design/) — static design artifacts and examples.
+This ensures every feature is intentional, documented, and verifiable before a line of code is written.
+
+---
+
+## Database Schema
+
+Five SQLite tables stored in the browser via IndexedDB:
+
+| Table | Key Columns |
+|---|---|
+| `users` | id, name, email, password_hash, avatar_url, created_at |
+| `notes` | id, user_id, title, content, is_pinned, created_at, updated_at |
+| `tags` | id, name, color |
+| `note_tags` | note_id, tag_id (many-to-many join) |
+| `settings` | user_id, theme, font_size |
+
+---
+
+## Constraints & Known Limitations
+
+- **Local only** — No cloud sync. Clearing browser data will erase all notes.
+- **OAuth** — Google/Microsoft buttons are UI placeholders; no real OAuth is implemented.
+- **Voice transcription** — Requires Chrome or Edge (Web Speech API).
+- **Checklist notes** — UI placeholder only; not yet implemented.
+
+---
+
+## Further Reading
+
+- [`REQUIREMENTS.md`](REQUIREMENTS.md) — Full product requirements document
+- [`openspec/specs/`](openspec/specs/) — All feature specifications
+- [`front-end-design/`](front-end-design/) — Static design prototypes for every screen
+- [`openspec/changes/`](openspec/changes/) — Archived change proposals and design decisions
