@@ -159,4 +159,19 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleFab();
         }
     });
+
+    // ===== Dark / Light Theme Toggle =====
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const htmlEl = document.documentElement;
+
+    // Initialise from localStorage (default: dark)
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    htmlEl.setAttribute('data-theme', savedTheme);
+
+    themeToggleBtn.addEventListener('click', () => {
+        const current = htmlEl.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        htmlEl.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+    });
 });

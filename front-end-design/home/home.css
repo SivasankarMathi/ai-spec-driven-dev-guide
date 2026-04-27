@@ -63,6 +63,28 @@
 }
 
 /* ===================================
+   Dark Theme Override
+   =================================== */
+[data-theme="dark"] {
+    --color-primary: #5B8AFF;
+    --color-primary-hover: #4A78F0;
+    --color-primary-light: rgba(91, 138, 255, 0.15);
+    --color-background: #0F0F12;
+    --color-white: #1C1C22;
+    --color-black: #F0F0F5;
+    --color-text-primary: #EAEAF0;
+    --color-text-secondary: #A0A0B0;
+    --color-text-muted: #6B6B80;
+    --color-border: #2A2A35;
+    --color-card-bg: #1C1C22;
+    --color-danger: #FF6B6B;
+
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+/* ===================================
    Reset & Base
    =================================== */
 *, *::before, *::after {
@@ -79,6 +101,7 @@ body {
     background: var(--color-background);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    transition: background var(--transition-base), color var(--transition-base);
 }
 
 /* ===================================
@@ -118,12 +141,46 @@ body {
     top: 0;
     background: var(--color-background);
     z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
 }
+
+/* Theme Toggle Button */
+.theme-toggle {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    background: var(--color-white);
+    color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.theme-toggle:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background: var(--color-primary-light);
+}
+
+/* In dark mode: show sun, hide moon */
+[data-theme="dark"] .theme-toggle__icon--moon { display: none; }
+[data-theme="dark"] .theme-toggle__icon--sun  { display: block; }
+
+/* In light mode: show moon, hide sun */
+:not([data-theme="dark"]) .theme-toggle__icon--sun  { display: none; }
+:not([data-theme="dark"]) .theme-toggle__icon--moon { display: block; }
 
 .search-bar {
     position: relative;
     display: flex;
     align-items: center;
+    flex: 1;
 }
 
 .search-bar__input {
