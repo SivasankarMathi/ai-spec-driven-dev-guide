@@ -1,0 +1,17 @@
+{
+  "name": "my-react-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.20.2"
+  },
+  "scripts": {
+    "build": "esbuild src/index.js --bundle --outfile=public/bundle.js --loader:.js=jsx --jsx=automatic",
+    "start": "npm run build && echo 'Open public/index.html in your browser'"
+  }
+}
