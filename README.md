@@ -23,7 +23,3 @@ npm run dev
 - `voice-notes-app/` — React + TypeScript reference application
 - `openspec/specs/` — Feature specifications (BDD format)
 - `front-end-design/` — UI/UX design artifacts
-
-## License
-
-- MIT
