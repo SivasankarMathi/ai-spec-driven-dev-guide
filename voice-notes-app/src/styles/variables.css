@@ -105,3 +105,65 @@
   --editor-max-width: 720px;
   --settings-max-width: 560px;
 }
+
+/* ===================================
+   Dark Theme Overrides
+   =================================== */
+[data-theme="dark"] {
+  /* Colors - Primary */
+  --color-primary: #4A7FFF;
+  --color-primary-hover: #5B8FFF;
+  --color-primary-dark: #2D5BFF;
+  --color-primary-light: #1E2A4A;
+
+  /* Colors - Background */
+  --color-background: #121212;
+  --color-card: #1E1E1E;
+  --color-white: #1E1E1E;
+  --color-black: #000000;
+
+  /* Colors - Text */
+  --color-text-primary: #E0E0E0;
+  --color-text-secondary: #A0A0A0;
+  --color-text-muted: #707070;
+  --color-text-placeholder: #606060;
+
+  /* Colors - Border */
+  --color-border: #2E2E2E;
+  --color-border-focus: #4A7FFF;
+
+  /* Colors - Semantic */
+  --color-error: #EF4444;
+  --color-danger: #EF4444;
+  --color-danger-light: #2D1F1F;
+  --color-red: #EF4444;
+  --color-red-light: #2D1F1F;
+
+  /* Colors - Tags */
+  --color-tag-yellow: #3D3520;
+  --color-tag-yellow-text: #FCD34D;
+  --color-tag-blue: #1E2A4A;
+  --color-tag-blue-text: #93B4FF;
+
+  /* Colors - Toggle */
+  --color-toggle-bg: #3A3A3A;
+  --color-toggle-active: #4A7FFF;
+
+  /* Colors - Avatar */
+  --color-avatar-bg: #2A5C55;
+  --color-avatar-text: #E0E0E0;
+
+  /* Colors - Onboarding */
+  --color-blue-light: #1E2A4A;
+  --color-purple: #6E63FF;
+  --color-orange: #E8864A;
+  --color-yellow: #D9A000;
+  --color-gray-light: #2E2E2E;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.6);
+  --shadow-modal: 0 -4px 24px rgba(0, 0, 0, 0.5);
+}

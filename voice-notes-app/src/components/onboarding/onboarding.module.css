@@ -570,6 +570,47 @@
 }
 
 /* ===================================
+   Dark Theme Overrides
+   =================================== */
+:global([data-theme="dark"]) .recordingUi {
+  background: linear-gradient(180deg, #1A1F2E 0%, #1E1E1E 40%);
+}
+
+:global([data-theme="dark"]) .phoneMockup__screen {
+  background: #1E1E1E;
+}
+
+:global([data-theme="dark"]) .transcriptionUi {
+  background: #1E1E1E;
+}
+
+:global([data-theme="dark"]) .aiCard {
+  background: linear-gradient(135deg, #1E2A4A 0%, #1A2040 100%);
+}
+
+:global([data-theme="dark"]) .aiCard__badge {
+  background: linear-gradient(135deg, #4A7FFF 0%, #2D5BFF 100%);
+}
+
+:global([data-theme="dark"]) .templateUi {
+  background: #1E1E1E;
+}
+
+:global([data-theme="dark"]) .recordingControls__btn {
+  background: #2A2A2A;
+  color: #E0E0E0;
+}
+
+:global([data-theme="dark"]) .recordingControls__btn--record {
+  background: linear-gradient(135deg, #4A7FFF 0%, #2D5BFF 100%);
+  color: #FFFFFF;
+}
+
+:global([data-theme="dark"]) .micButton {
+  box-shadow: 0 4px 16px rgba(45, 91, 255, 0.2);
+}
+
+/* ===================================
    Responsive Design
    =================================== */
 @media (min-width: 768px) {
