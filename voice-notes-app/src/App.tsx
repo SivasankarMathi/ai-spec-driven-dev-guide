@@ -13,6 +13,7 @@ import HomePage from './pages/HomePage';
 import RecorderPage from './pages/RecorderPage';
 import NoteEditorPage from './pages/NoteEditorPage';
 import SettingsPage from './pages/SettingsPage';
+import AboutPage from './pages/AboutPage';
 
 function App() {
   return (
@@ -82,6 +83,7 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
+                <Route path="/about" element={<AboutPage />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </ToastProvider>

@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import styles from './settings.module.css';
 
 interface SettingsMenuProps {
@@ -7,9 +8,20 @@ interface SettingsMenuProps {
 const MENU_ITEMS = [
   { key: 'profile' as const, label: 'Profile', desc: 'Avatar, Username, Email ID' },
   { key: 'appearance' as const, label: 'Appearance', desc: 'Theme, Font' },
+  { key: 'about' as const, label: 'About', desc: 'App information and version' },
 ];
 
 export default function SettingsMenu({ onNavigate }: SettingsMenuProps) {
+  const navigate = useNavigate();
+
+  const handleItemClick = (key: typeof MENU_ITEMS[number]['key']) => {
+    if (key === 'about') {
+      navigate('/about');
+    } else {
+      onNavigate(key);
+    }
+  };
+
   return (
     <ul className={styles.settingsMenu} role="list">
       {MENU_ITEMS.map((item) => (
@@ -18,11 +30,11 @@ export default function SettingsMenu({ onNavigate }: SettingsMenuProps) {
           className={styles.settingsMenu__item}
           role="button"
           tabIndex={0}
-          onClick={() => onNavigate(item.key)}
+          onClick={() => handleItemClick(item.key)}
           onKeyDown={(e) => {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault();
-              onNavigate(item.key);
+              handleItemClick(item.key);
             }
           }}
         >
