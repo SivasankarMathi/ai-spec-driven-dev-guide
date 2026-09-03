@@ -1,5 +1,3 @@
-# AI Spec-Driven Dev Guide
-
 A reference guide for spec-first development powered by Codestudio.
 
 ## Contents
