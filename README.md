@@ -1,3 +1,8 @@
-# AI Spec-Driven Dev Guide
+A reference guide for spec-first development powered by Code.
 
-This sample demonstrates an example workflow of building apps using spec-first development powered by Codestudio.
+## Contents
+
+- `demo/` – sample walkthrough project
+- `front-end-design/` – UI/UX design guidance
+- `openspec/` – specs and change proposals
+- `voice-notes-app/` – example application built from specs
