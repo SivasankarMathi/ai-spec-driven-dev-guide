@@ -1,4 +1,4 @@
-A reference guide for spec-first development powered by Codestudio.
+A reference guide for spec-first development powered by Code.
 
 ## Contents
 
